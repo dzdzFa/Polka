@@ -1,4 +1,4 @@
-import { creatRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/Home.vue";
 import Detail from "../components/Detail.vue";
 import Tape from "../components/Tape.vue";
@@ -16,7 +16,7 @@ const routes = [
   { path: "/:pathMatch(.*)*", name: "not-found", Component: NotFound },
 ];
 
-const router = creatRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
