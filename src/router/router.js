@@ -3,7 +3,6 @@ import Home from "../components/Home.vue";
 import Detail from "../components/Detail.vue";
 import Tape from "../components/Tape.vue";
 import NotFound from "../components/NotFound.vue";
-import { Component } from "react";
 
 const routes = [
   { path: "/", name: "home", Component: Home },
