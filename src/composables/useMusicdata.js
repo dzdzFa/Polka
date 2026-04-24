@@ -1,4 +1,4 @@
-import { ref, copmputed } from "vue";
+import { ref, computed } from "vue";
 
 const tracks = ref([
   {

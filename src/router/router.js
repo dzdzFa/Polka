@@ -5,15 +5,15 @@ import Tape from "../components/Tape.vue";
 import NotFound from "../components/NotFound.vue";
 
 const routes = [
-  { path: "/", name: "home", Component: Home },
-  { path: "/track/:id", name: "detail", Component: Detail },
+  { path: "/", name: "home", component: Home },
+  { path: "/track/:id", name: "detail", component: Detail },
   {
     path: "/tape",
     name: "tape",
     Component: Tape,
     meta: { requiresSave: true },
   },
-  { path: "/:pathMatch(.*)*", name: "not-found", Component: NotFound },
+  { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
 ];
 
 const router = createRouter({
