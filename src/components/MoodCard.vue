@@ -1,7 +1,7 @@
 <template>
   <div class="mood-card" @click="$emit('click')">
     <div class="card-cover">
-      <img src="coverSrc" :alt="track.title" @error="handleImageError" />
+      <img :src="coverSrc" :alt="track.title" @error="handleImageError" />
       <button
         class="save-btn"
         :class="{ 'save-btn-saved': isSaved }"
@@ -25,7 +25,6 @@
 
 <script setup>
 import { computed } from "vue";
-import { track } from "@vue/reactivity";
 
 const props = defineProps({
   track: {
