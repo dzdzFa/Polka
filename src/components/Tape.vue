@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import MoodCard from "./MoodCard.vue";
-</script>
-
 <template>
   <div class="tape-page fade-in">
     <h1 class="page-title">MY TAPE</h1>
-    <div v-if="savedTracks.lenght > 0" class="grid">
+    <div v-if="savedTracks.length > 0" class="grid">
       <MoodCard
         v-for="track in savedTracks"
         :key="track.id"

@@ -1,53 +1,54 @@
 <template>
-<div class="home fade-in">
-  <h1 class="page-title">ВЫБЕРИ СВОЙ ВАЙБ</h1>
+  <div class="home fade-in">
+    <h1 class="page-title">ВЫБЕРИ СВОЙ ВАЙБ</h1>
 
-  <div class="vibe-grid">
-    <button
-    v-for="vibe in vibes"
-    :key="vibe.id"
-    class="vibe-btn"
-    :class="{'vibe-btn-active': currentVibe === vibe.id}"
-    @click="selectVibe(vibe.id)">
-    <span class="vibe-emoji">{{ getVibeEmoji(vibe.id) }}</span>
-    <span>{{ vibe.label }}</span>
-  </button>
+    <div class="vibe-grid">
+      <button
+        v-for="vibe in vibes"
+        :key="vibe.id"
+        class="vibe-btn"
+        :class="{ 'vibe-btn-active': currentVibe === vibe.id }"
+        @click="selectVibe(vibe.id)"
+      >
+        <span class="vibe-emoji">{{ getVibeEmoji(vibe.id) }}</span>
+        <span>{{ vibe.label }}</span>
+      </button>
+    </div>
+
+    <div class="tracks-section">
+      <div class="section-header">
+        <h2>{{ getCurrentVibeTitle() }}</h2>
+        <span class="track-count">{{ filteredTracks.length }} треков</span>
+      </div>
+
+      <div class="grid">
+        <MoodCard
+          v-for="track in filteredTracks"
+          :key="track.id"
+          :track="track"
+          :is-saved="isInTape(track.id)"
+          @save="handleSave"
+          @click="goToDetail(track.id)"
+        />
+      </div>
+
+      <div v-if="filteredTracks.length === 0" class="empty-state">
+        <div class="empty-state-icon">🎧</div>
+        <h3 class="empty-state-title">Нет треков</h3>
+        <p class="empty-state-text">В этом настроении пока нет треков</p>
+      </div>
+    </div>
   </div>
-
-  <div class="tracks-setion">
-    <div class="section-header">
-      <h2>{{ getCurrentVibeTitle() }}</h2>
-      <span class="track-count">{{ filtredTracks.length }} треков</span>
-    </div>
-
-    <div class="grid">
-      <MoodCard
-      v-for="track in filtredTracks"
-      :key="track.id"
-      :track="track"
-      :is-saved="isInTape(track.id)"
-      @save="handleSave"
-      @click="goToDetail(track.id)"
-      />
-    </div>
-
-    <div v-if="filteredTracks.length === 0" class="empty-state">
-      <div class="empty-state-icon">🎧</div>
-      <h3 class="empty-state-title">Нет треков</h3>
-      <p class="empty-state-text">В этом настроении пока нет терков</p>
-    </div>
-  </div>
-</div>
 </template>
 
 <script setup>
-import { useMusicData } from '../composables/useMusicData.js';
-import { useMyTape } from '../composables/useMyTape.js';
-import { useRouter } from 'vue-router';
+import { useMusicData } from "../composables/useMusicData.js";
+import { useMyTape } from "../composables/useMyTape.js";
+import { useRouter } from "vue-router";
 import MoodCard from "./MoodCard.vue";
 
-const {vibes, currentVibe, filteredTracks, setVibe} = useMusicData();
-const {addToTape, removeeFromTape, isInTape} = useMyTape();
+const { vibes, currentVibe, filteredTracks, setVibe } = useMusicData();
+const { addToTape, removeFromTape, isInTape } = useMyTape();
 const router = useRouter();
 
 const selectVibe = (vibeId) => {
@@ -56,29 +57,29 @@ const selectVibe = (vibeId) => {
 
 const handleSave = (trackId, isSaved) => {
   if (isSaved) {
-    removeeFromTape(trackId);
+    removeFromTape(trackId);
   } else {
     addToTape(trackId);
   }
 };
 
 const goToDetail = (id) => {
-  router.push({name: 'detail', params: {id}});
+  router.push({ name: "detail", params: { id } });
 };
 
 const getVibeEmoji = (vibeId) => {
   const emojis = {
-    all: '🎧',
-    cheerful: '🔥',
-    funny : '😂',
-    calm : '😌',
-    sad : '😢',
+    all: "🎧",
+    cheerful: "🔥",
+    funny: "😂",
+    calm: "😌",
+    sad: "😢",
   };
-  return emojis[vibeId] || '🎵';
+  return emojis[vibeId] || "🎵";
 };
 const getCurrentVibeTitle = () => {
   const vibe = vibes.value.find((v) => v.id === currentVibe.value);
-  return vibe ? vibe.label : 'Все треки';
+  return vibe ? vibe.label : "Все треки";
 };
 </script>
 

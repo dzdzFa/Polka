@@ -1,9 +1,9 @@
 <template>
   <div v-if="track" class="detail-page fade-in">
-    <button class="back-btn" @click="goToBack"><-- Назад</button>
+    <button class="back-btn" @click="goBack"><-- Назад</button>
     <div class="detail-card">
       <div class="detail-cover">
-        <img src="coverSrs" :alt="track.title" @error="handleImageError" />
+        <img :src="coverSrc" :alt="track.title" @error="handleImageError" />
       </div>
 
       <div class="detail-info">
@@ -22,7 +22,9 @@
           class="tape-btn"
           :class="{ saved: isSaved }"
           @click="toggleSave"
-        ></button>
+        >
+          Добавить в предпочтения
+        </button>
       </div>
     </div>
   </div>
@@ -42,17 +44,17 @@ import { useMyTape } from "../composables/useMyTape.js";
 const route = useRoute();
 const router = useRouter();
 const { getTrackById } = useMusicData();
-const { addToTape, removeTape, isInTape } = useMyTape();
+const { addToTape, removeFromTape, isInTape } = useMyTape();
 
 const track = ref(null);
 const isSaved = ref(false);
 
-const coverSrs = computed(() => {
+const coverSrc = computed(() => {
   if (!track.value) return "";
   if (track.value.cover && track.value.cover !== "") {
     return track.value.cover;
   }
-  return "@/assets/img/no-cover.jpg";
+  return "/img/no-cover.jpg";
 });
 
 onMounted(() => {
@@ -74,7 +76,7 @@ const toggleSave = () => {
   }
 };
 
-const goToBack = () => {
+const goBack = () => {
   router.back();
 };
 
@@ -89,7 +91,7 @@ const getVibeLable = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "@/assets/img/no-cover.jpg";
+  e.target.src = "/img/no-cover.jpg";
 };
 </script>
 

@@ -10,7 +10,7 @@ const routes = [
   {
     path: "/tape",
     name: "tape",
-    Component: Tape,
+    component: Tape,
     meta: { requiresSave: true },
   },
   { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
@@ -20,7 +20,5 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-router.beforeEach((to, from, next) => next());
 
 export default router;

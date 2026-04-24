@@ -6,7 +6,7 @@ const tracks = ref([
     title: "Danza Kuduro",
     artist: "Lucenzo, Don Omar",
     vibe: "cheerful",
-    cover: "../asstes/img/Denza.jpg",
+    cover: "/img/Denza.jpg",
     duration: "3:19",
     desc: "Бодрая песня для олдов",
   },
@@ -15,7 +15,7 @@ const tracks = ref([
     title: "Все для тебя",
     artist: "Стас Михайлов",
     vibe: "funny",
-    cover: "../assets/img/VseDljTebj.jpg",
+    cover: "/img/VseDljTebj.jpg",
     duration: "3:54",
     desc: "Веселая и топовая песня Стаса",
   },
@@ -24,7 +24,7 @@ const tracks = ref([
     title: "The Town",
     artist: "The Weeknd",
     vibe: "calm",
-    cover: "../assets/img/Thetown.jpg",
+    cover: "/img/Thetown.jpg",
     duration: "5:07",
     desc: "Для настоящик ценителей поп культуры",
   },
@@ -33,18 +33,18 @@ const tracks = ref([
     title: "Глаза не врут",
     artist: "Кореш",
     vibe: "sad",
-    cover: "../assets/img/eysenotlaying.jpg",
+    cover: "/img/eysenotlaying.jpg",
     duration: "1:50",
     desc: "Просто легенда",
   },
 ]);
 
 const vibes = ref([
-  { id: "all", lable: "Все" },
-  { id: "cheerful", lable: "Бодрое" },
-  { id: "funny", lable: "Веселое" },
-  { id: "calm", lable: "Спокойное" },
-  { id: "sad", lable: "Грустное" },
+  { id: "all", label: "Все" },
+  { id: "cheerful", label: "Бодрое" },
+  { id: "funny", label: "Веселое" },
+  { id: "calm", label: "Спокойное" },
+  { id: "sad", label: "Грустное" },
 ]);
 
 const currentVibe = ref("all");
@@ -54,7 +54,7 @@ const filteredTracks = computed(() => {
   return tracks.value.filter((track) => track.vibe === currentVibe.value);
 });
 
-const setvibe = (vibeId) => {
+const setVibe = (vibeId) => {
   currentVibe.value = vibeId;
 };
 
@@ -62,6 +62,6 @@ const getTrackById = (id) => {
   return tracks.value.find((track) => track.id === Number(id));
 };
 
-export function useMusicdata() {
-  return { tracks, vibes, currentVibe, filteredTracks, setvibe, getTrackById };
+export function useMusicData() {
+  return { tracks, vibes, currentVibe, filteredTracks, setVibe, getTrackById };
 }
