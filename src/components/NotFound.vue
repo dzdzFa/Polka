@@ -1,20 +1,22 @@
 <template>
-<div class="not-found fade-in">
-  <div class="empty-state-icon">🎵</div>
-  <h1 class="error-code">404</h1>
-  <p class="error-text">Страница не найдена</p>
-  <p class="error-desc">Такого трека или страницы не существует</p>
-  <button class="btn btn-primary" @click="goHome">Вернуться на главную</button>
-</div>
+  <div class="not-found fade-in">
+    <div class="empty-state-icon">🎵</div>
+    <h1 class="error-code">404</h1>
+    <p class="error-text">Страница не найдена</p>
+    <p class="error-desc">Такого трека или страницы не существует</p>
+    <button class="btn btn-primary" @click="goToHome">
+      Вернуться на главную
+    </button>
+  </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const goHome = () => {
-  router.push({ name: "home"});
+const goToHome = () => {
+  router.push({ name: "home" });
 };
 </script>
 
@@ -40,12 +42,12 @@ const goHome = () => {
 .fade-in {
   animation: fadeIn 0.3s ease;
 }
-@keyframes fadeIn{
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
-  to{
+  to {
     opacity: 1;
     transform: translateY(0);
   }
