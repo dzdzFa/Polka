@@ -47,21 +47,21 @@ const vibes = ref([
   { id: "sad", lable: "Грустное" },
 ]);
 
-const currentvibe = ref("all");
+const currentVibe = ref("all");
 
 const filteredTracks = computed(() => {
-  if (currentvibe.value === "all") return tracks.value;
-  return tracks.value.filter((track) => track.vibe === currentvibe.value);
+  if (currentVibe.value === "all") return tracks.value;
+  return tracks.value.filter((track) => track.vibe === currentVibe.value);
 });
 
 const setvibe = (vibeId) => {
-  currentvibe.value = vibeId;
+  currentVibe.value = vibeId;
 };
 
-const gettrackbuid = (id) => {
+const getTrackById = (id) => {
   return tracks.value.find((track) => track.id === Number(id));
 };
 
 export function useMusicdata() {
-  return { tracks, vibes, currentvibe, filteredTracks, setvibe, gettrackbuid };
+  return { tracks, vibes, currentVibe, filteredTracks, setvibe, getTrackById };
 }
