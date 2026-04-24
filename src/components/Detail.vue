@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { track } from "@vue/reactivity";
-import { handleError } from "vue";
-</script>
-
 <template>
   <div v-if="track" class="detail-page fade-in">
     <button class="back-btn" @click="goToBack"><-- Назад</button>
@@ -43,6 +38,7 @@ import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMusicData } from "../composables/useMusicData.js";
 import { useMyTape } from "../composables/useMyTape.js";
+import { track } from "@vue/reactivity";
 
 const route = useRoute();
 const router = useRouter();
@@ -84,18 +80,18 @@ const goToBack = () => {
 };
 
 const getVibeLable = (vibeId) => {
-    const labels = (
-        cheerful: "Бодрое"
-        funny: "Веселое"
-        calm: "Спокойное"
-        sad: "Грустное"
-    );
-    return labels[vibeId] || vibeId
-}
+  const labels = {
+    cheerful: "Бодрое",
+    funny: "Веселое",
+    calm: "Спокойное",
+    sad: "Грустное",
+  };
+  return labels[vibeId] || vibeId;
+};
 
 const handleImageError = (e) => {
-    e.target.src = "@/assets/img/no-cover.jpg"
-}
+  e.target.src = "@/assets/img/no-cover.jpg";
+};
 </script>
 
 <style scoped>
