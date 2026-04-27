@@ -9,6 +9,8 @@ const tracks = ref([
     cover: "/img/Denza.jpg",
     duration: "3:19",
     desc: "Бодрая песня для олдов",
+    yandexUrl:
+      "https://music.yandex.ru/album/11345535/track/1706563?utm_source=desktop&utm_medium=copy_link",
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ const tracks = ref([
     cover: "/img/VseDljTebj.jpg",
     duration: "3:54",
     desc: "Веселая и топовая песня Стаса",
+    yandexUrl:
+      "https://music.yandex.ru/album/3879428/track/31920859?utm_source=desktop&utm_medium=copy_link",
   },
   {
     id: 3,
@@ -27,6 +31,8 @@ const tracks = ref([
     cover: "/img/Thetown.jpg",
     duration: "5:07",
     desc: "Для настоящик ценителей поп культуры",
+    yandexUrl:
+      "https://music.yandex.ru/album/4418453/track/14478943?utm_source=desktop&utm_medium=copy_link",
   },
   {
     id: 4,
@@ -36,6 +42,8 @@ const tracks = ref([
     cover: "/img/eysenotlaying.jpg",
     duration: "1:50",
     desc: "Просто легенда",
+    yandexUrl:
+      "https://music.yandex.ru/album/22581464/track/104735373?utm_source=desktop&utm_medium=copy_link",
   },
 ]);
 

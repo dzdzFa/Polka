@@ -1,6 +1,7 @@
 <template>
   <div v-if="track" class="detail-page fade-in">
-    <button class="back-btn" @click="goBack"><-- Назад</button>
+    <button class="back-btn" @click="goBack">← Назад</button>
+
     <div class="detail-card">
       <div class="detail-cover">
         <img :src="coverSrc" :alt="track.title" @error="handleImageError" />
@@ -12,26 +13,37 @@
         <p class="detail-desc">{{ track.desc }}</p>
 
         <div class="detail-meta">
-          <span class="detail-duration">{{ track.duration }}</span>
+          <span class="detail-duration">⏱ {{ track.duration }}</span>
           <span class="tag" :class="`tag-${track.vibe}`">
-            {{ getVibeLable(track.vibe) }}
+            {{ getVibeLabel(track.vibe) }}
           </span>
         </div>
 
-        <button
-          class="tape-btn"
-          :class="{ saved: isSaved }"
-          @click="toggleSave"
-        >
-          Добавить в предпочтения
-        </button>
+        <div class="detail-buttons">
+          <button
+            class="tape-btn"
+            :class="{ saved: isSaved }"
+            @click="toggleSave"
+          >
+            {{ isSaved ? "Удалить из My Tape" : "Добавить в My Tape" }}
+          </button>
+
+          <button
+            v-if="track.yandexUrl"
+            class="yandex-btn"
+            @click="openYandexMusic"
+          >
+            Слушать
+            <span class="external-icon">↗</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <div v-else class="loading">
     <div class="loading-spinner"></div>
-    <p>Загрузка..</p>
+    <p>Загрузка...</p>
   </div>
 </template>
 
@@ -80,7 +92,13 @@ const goBack = () => {
   router.back();
 };
 
-const getVibeLable = (vibeId) => {
+const openYandexMusic = () => {
+  if (track.value?.yandexUrl) {
+    window.open(track.value.yandexUrl, "_blank");
+  }
+};
+
+const getVibeLabel = (vibeId) => {
   const labels = {
     cheerful: "Бодрое",
     funny: "Веселое",
@@ -159,6 +177,37 @@ const handleImageError = (e) => {
 
 .detail-duration {
   color: #666;
+}
+
+.detail-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.yandex-btn {
+  background: #ffcc00;
+  border: none;
+  color: #1a1a1a;
+  padding: 12px 24px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.yandex-btn:hover {
+  transform: scale(1.02);
+  background: #ffdd33;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+}
+
+.external-icon {
+  font-size: 1.1rem;
 }
 
 .tape-btn {
