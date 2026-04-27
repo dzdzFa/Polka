@@ -35,7 +35,7 @@
 <script setup>
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { useQuizState } from "../stores/quizState.js";
+import { useQuizState } from "../store/quizState.js";
 import { useQuiz } from "../composables/useQuiz.js";
 
 const router = useRouter();
