@@ -1,23 +1,80 @@
 <template>
   <div class="app-layout">
-    <header class="header">
-      <RouterLink :to="{ name: 'home' }" class="logo">MOOD TAPE</RouterLink>
+    <header class="header" v-if="quizCompleted">
+      <RouterLink :to="{ name: 'home' }" class="logo">
+        <span class="logo-icon">📼</span>
+        MOOD TAPE
+      </RouterLink>
       <nav class="nav">
-        <RouterLink :to="{ name: 'home' }" class="nav-link">АФИША</RouterLink>
-        <RouterLink :to="{ name: 'tape' }" class="nav-link"
-          >МОЯ ЛЕНТА</RouterLink
+        <RouterLink
+          :to="{ name: 'home' }"
+          class="nav-link"
+          active-class="nav-link-active"
         >
+          АФИША
+        </RouterLink>
+        <RouterLink
+          :to="{ name: 'tape' }"
+          class="nav-link"
+          active-class="nav-link-active"
+        >
+          MY TAPE
+        </RouterLink>
       </nav>
     </header>
 
     <main class="main-content">
-      <RouterView />
+      <RouterView v-if="quizCompleted" />
+      <div v-else class="quiz-placeholder"></div>
     </main>
+
+    <WelcomeModal v-if="showWelcome && !quizCompleted" @start="startQuiz" />
+
+    <Quiz v-if="showQuiz && !quizCompleted" @complete="onQuizComplete" />
+
+    <QuizResult v-if="showResult && quizCompleted" />
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+import { useQuizState } from "./stores/quizState.js";
+import WelcomeModal from "./components/WelcomeModal.vue";
+import Quiz from "./components/Quiz.vue";
+import QuizResult from "./components/QuizResult.vue";
+
+const { completeQuiz, shouldShowWelcome, hideWelcome } = useQuizState();
+
+const quizCompleted = ref(false);
+const showWelcome = ref(true);
+const showQuiz = ref(false);
+const showResult = ref(false);
+
+onMounted(() => {
+  const savedState = localStorage.getItem("quiz-completed");
+  if (savedState === "true") {
+    quizCompleted.value = true;
+    completeQuiz();
+    showWelcome.value = false;
+  }
+});
+
+const startQuiz = () => {
+  showWelcome.value = false;
+  showQuiz.value = true;
+};
+
+const onQuizComplete = (track) => {
+  showQuiz.value = false;
+  quizCompleted.value = true;
+  showResult.value = true;
+  localStorage.setItem("quiz-completed", "true");
+
+  setTimeout(() => {
+    showResult.value = false;
+  }, 8000);
+};
 </script>
 
 <style scoped>
@@ -93,27 +150,16 @@ import { RouterLink, RouterView } from "vue-router";
   width: 100%;
 }
 
-.footer {
-  text-align: center;
-  padding: 30px;
-  border-top: 1px solid #1a1a1a;
-  color: #555;
-  font-size: 0.8rem;
-}
-
 @media (max-width: 768px) {
   .header {
     padding: 15px 20px;
   }
-
   .logo {
     font-size: 1rem;
   }
-
   .nav {
     gap: 15px;
   }
-
   .main-content {
     padding: 20px 15px;
   }

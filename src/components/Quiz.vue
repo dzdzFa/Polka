@@ -6,12 +6,14 @@
         <div class="progress-bar">
           <div class="progress-fill" :style="{ width: progress + '%' }"></div>
         </div>
-        <span class="question-counter">{{ currentQuestionIndex + 1 }} / {{ questions.length }}</span>
+        <span class="question-counter"
+          >{{ currentQuestionIndex + 1 }} / {{ questions.length }}</span
+        >
       </div>
 
       <div class="quiz-content">
         <h3 class="question-text">{{ currentQuestion.text }}</h3>
-        
+
         <div class="options-grid">
           <button
             v-for="(option, idx) in currentQuestion.options"
@@ -28,37 +30,40 @@
 </template>
 
 <script setup>
-import {useQuiz} from '../composables/useQuiz.js'
-import { useMusicData } from '../composables/useMusicData.js';
-import { useQuizState } from '../store/quizState.js';
+import { useQuiz } from "../composables/useQuiz.js";
+import { useMusicData } from "../composables/useMusicData.js";
+import { useQuizState } from "../store/quizState.js";
 
-const emit = defineEmits(['complete'])
+const emit = defineEmits(["complete"]);
 
 const {
-    currentQuestion,
-    currentQuestionIndex,
-    questions,
-    progress,
-    saveAnswer,
-    getResultVibe
-} = useQuiz()
+  currentQuestion,
+  currentQuestionIndex,
+  questions,
+  progress,
+  saveAnswer,
+  getResultVibe,
+} = useQuiz();
 
-const {tracks} = useMusicData()
-const {setSelectedTrack, completeQuiz} = useQuizState()
+const { tracks } = useMusicData();
+const { setSelectedTrack, completeQuiz } = useQuizState();
 
 const handleAnswer = (vibe) => {
-    saveAnswer(vibe)
-    if (currentQuestionIndex.value +1 === questions.length) {
-        const resultVibe = getResultVibe()
+  saveAnswer(vibe);
+  if (currentQuestionIndex.value + 1 === questions.length) {
+    const resultVibe = getResultVibe();
 
-        const matchingTrack = tracks.value.filter(track => track.vibe === resultVibe)
-    const randomTrack = matchingTracks[Math.floor(Math.random() * matchingTracks.length)]
+    const matchingTrack = tracks.value.filter(
+      (track) => track.vibe === resultVibe,
+    );
+    const randomTrack =
+      matchingTracks[Math.floor(Math.random() * matchingTracks.length)];
 
-    setSelectedTrack(randomTrack)
-    completeQuiz()
-    emit('complete', randomTrack)
-    }
-}
+    setSelectedTrack(randomTrack);
+    completeQuiz();
+    emit("complete", randomTrack);
+  }
+};
 </script>
 
 <style scoped>
@@ -166,11 +171,11 @@ const handleAnswer = (vibe) => {
   .quiz-container {
     padding: 24px;
   }
-  
+
   .question-text {
     font-size: 1.2rem;
   }
-  
+
   .option-btn {
     padding: 12px 16px;
     font-size: 0.9rem;

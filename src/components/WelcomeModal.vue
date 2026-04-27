@@ -1,19 +1,21 @@
 <template>
-    <div class="welcome-overlay">
-        <div class="welcome-container">
-            <div class="welcome-icon">📼</div>
-            <h1 class="welcome-title">MOOD TAPE</h1>
-            <p class="welcome-text">Узнай, какая музыка подходит твоему настроению прямо сейчас</p>
-            <button class="start-btn" @click="$emit('start')">
-                Узнай свой вайб
-                <span class="arrow">→</span>
-            </button>
-        </div>
+  <div class="welcome-overlay">
+    <div class="welcome-container">
+      <div class="welcome-icon">📼</div>
+      <h1 class="welcome-title">MOOD TAPE</h1>
+      <p class="welcome-text">
+        Узнай, какая музыка подходит твоему настроению прямо сейчас
+      </p>
+      <button class="start-btn" @click="$emit('start')">
+        Узнай свой вайб
+        <span class="arrow">-></span>
+      </button>
     </div>
+  </div>
 </template>
 
 <script setup>
-defineEmits(['start'])
+defineEmits(["start"]);
 </script>
 
 <style scoped>
@@ -98,7 +100,8 @@ defineEmits(['start'])
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
