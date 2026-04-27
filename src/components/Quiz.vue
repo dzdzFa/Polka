@@ -2,7 +2,7 @@
   <div class="quiz-overlay">
     <div class="quiz-container">
       <div class="quiz-header">
-        <h2 class="quiz-title">Узнай свой вайб</h2>
+        <h2 class="quiz-title">🎯 Узнай свой вайб</h2>
         <div class="progress-bar">
           <div class="progress-fill" :style="{ width: progress + '%' }"></div>
         </div>
@@ -21,6 +21,9 @@
             class="option-btn"
             @click="handleAnswer(option.vibe)"
           >
+            <span class="option-marker">{{
+              String.fromCharCode(65 + idx)
+            }}</span>
             {{ option.text }}
           </button>
         </div>
@@ -50,18 +53,30 @@ const { setSelectedTrack, completeQuiz } = useQuizState();
 
 const handleAnswer = (vibe) => {
   saveAnswer(vibe);
+
+  // Проверяем, последний ли это вопрос
   if (currentQuestionIndex.value + 1 === questions.length) {
+    // Получаем результат вайба
     const resultVibe = getResultVibe();
 
-    const matchingTrack = tracks.value.filter(
+    // Ищем треки с таким вайбом
+    const matchingTracks = tracks.value.filter(
       (track) => track.vibe === resultVibe,
     );
-    const randomTrack =
-      matchingTracks[Math.floor(Math.random() * matchingTracks.length)];
 
-    setSelectedTrack(randomTrack);
+    // Если есть подходящие треки, выбираем случайный
+    let selectedTrack = null;
+    if (matchingTracks.length > 0) {
+      const randomIndex = Math.floor(Math.random() * matchingTracks.length);
+      selectedTrack = matchingTracks[randomIndex];
+    } else {
+      // Если нет треков с таким вайбом, берем первый попавшийся (такого не должно быть)
+      selectedTrack = tracks.value[0];
+    }
+
+    setSelectedTrack(selectedTrack);
     completeQuiz();
-    emit("complete", randomTrack);
+    emit("complete", selectedTrack);
   }
 };
 </script>
@@ -73,12 +88,12 @@ const handleAnswer = (vibe) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1500;
   animation: fadeIn 0.3s ease;
 }
 
@@ -98,12 +113,9 @@ const handleAnswer = (vibe) => {
 }
 
 .quiz-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
 }
 
 .progress-bar {
@@ -118,6 +130,7 @@ const handleAnswer = (vibe) => {
   height: 100%;
   background: #00ff88;
   transition: width 0.3s ease;
+  border-radius: 4px;
 }
 
 .question-counter {
@@ -126,7 +139,7 @@ const handleAnswer = (vibe) => {
 }
 
 .question-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   margin-bottom: 30px;
   color: #fff;
@@ -142,12 +155,29 @@ const handleAnswer = (vibe) => {
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 60px;
-  padding: 16px 24px;
-  font-size: 1rem;
+  padding: 14px 20px;
+  font-size: 0.95rem;
   color: #e0e0e0;
   cursor: pointer;
   transition: all 0.2s;
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.option-marker {
+  width: 28px;
+  height: 28px;
+  background: #00ff88;
+  color: #0a0a0a;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  flex-shrink: 0;
 }
 
 .option-btn:hover {
@@ -173,12 +203,12 @@ const handleAnswer = (vibe) => {
   }
 
   .question-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .option-btn {
     padding: 12px 16px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 </style>

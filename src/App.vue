@@ -39,7 +39,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-import { useQuizState } from "./stores/quizState.js";
+import { useQuizState } from "./store/quizState.js";
 import WelcomeModal from "./components/WelcomeModal.vue";
 import Quiz from "./components/Quiz.vue";
 import QuizResult from "./components/QuizResult.vue";

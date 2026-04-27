@@ -3,13 +3,13 @@ import { ref, computed } from "vue";
 const questions = [
   {
     id: 1,
-    text: "Как бы вы описали свое текущее эмоциональное состояние?",
+    text: "Как бы вы описали своё текущее эмоциональное состояние?",
     options: [
       { text: "Бодрое и активное", vibe: "cheerful" },
-      { text: "Веселое и игривое", vibe: "funny" },
       { text: "Спокойное и ровное", vibe: "calm" },
       { text: "Усталое или сонное", vibe: "sad" },
-      { text: "Подавленное", vibe: "sad" },
+      { text: "Подавленное или раздражённое", vibe: "sad" },
+      { text: "Веселое и игривое", vibe: "funny" },
     ],
   },
   {
@@ -34,25 +34,27 @@ const questions = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     text: "Какая погода больше всего похожа на ваше настроение прямо сейчас?",
     options: [
       { text: "Солнечная и ясная", vibe: "cheerful" },
       { text: "Переменная облачность, без осадков", vibe: "calm" },
       { text: "Пасмурно, но тихо", vibe: "sad" },
       { text: "Дождь или сильный ветер", vibe: "sad" },
-      { text: "Радуга после дождя", vibe: "funny" },
+      { text: "Веселая радуга после дождя", vibe: "funny" },
     ],
   },
 ];
 
-export function useQuzi() {
+export function useQuiz() {
   const currentQuestionIndex = ref(0);
   const answers = ref([]);
   const isCompleted = ref(false);
+
   const currentQuestion = computed(() => {
     return questions[currentQuestionIndex.value];
   });
+
   const progress = computed(() => {
     return ((currentQuestionIndex.value + 1) / questions.length) * 100;
   });
@@ -67,7 +69,7 @@ export function useQuzi() {
     }
   };
 
-  const resetQuzi = () => {
+  const resetQuiz = () => {
     currentQuestionIndex.value = 0;
     answers.value = [];
     isCompleted.value = false;
@@ -94,6 +96,7 @@ export function useQuzi() {
         maxVibe = vibe;
       }
     }
+
     return maxVibe;
   };
 
@@ -105,7 +108,7 @@ export function useQuzi() {
     isCompleted,
     progress,
     saveAnswer,
-    resetQuzi,
+    resetQuiz,
     getResultVibe,
   };
 }
