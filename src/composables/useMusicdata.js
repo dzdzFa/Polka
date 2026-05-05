@@ -1,12 +1,18 @@
 import { ref, computed } from "vue";
 
+import denza from "/img/Denza.jpg";
+import vse from "/img/VseDljTebj.jpg";
+import thetown from "/img/Thetown.jpg";
+import eyes from "/img/eysenotlaying.jpg";
+import noCover from "/img/no-cover.jpg";
+
 const tracks = ref([
   {
     id: 1,
     title: "Danza Kuduro",
     artist: "Lucenzo, Don Omar",
     vibe: "cheerful",
-    cover: "/Denza.jpg",
+    cover: denza,
     duration: "3:19",
     desc: "Бодрая песня для олдов",
     yandexUrl:
@@ -17,7 +23,7 @@ const tracks = ref([
     title: "Все для тебя",
     artist: "Стас Михайлов",
     vibe: "funny",
-    cover: "/VseDljTebj.jpg",
+    cover: vse,
     duration: "3:54",
     desc: "Веселая и топовая песня Стаса",
     yandexUrl:
@@ -28,7 +34,7 @@ const tracks = ref([
     title: "The Town",
     artist: "The Weeknd",
     vibe: "calm",
-    cover: "/Thetown.jpg",
+    cover: thetown,
     duration: "5:07",
     desc: "Для настоящик ценителей поп культуры",
     yandexUrl:
@@ -39,7 +45,7 @@ const tracks = ref([
     title: "Глаза не врут",
     artist: "Кореш",
     vibe: "sad",
-    cover: "/eysenotlaying.jpg",
+    cover: eyes,
     duration: "1:50",
     desc: "Просто легенда",
     yandexUrl:
