@@ -47,7 +47,7 @@ const isVisible = ref(true);
 
 const trackCover = computed(() => {
   if (track?.cover && track.cover !== "") return track.cover;
-  return "/no-cover.jpg";
+  return "/img/no-cover.jpg";
 });
 
 const getVibeLabel = (vibeId) => {
@@ -61,7 +61,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "/no-cover.jpg";
+  e.target.src = "/img/no-cover.jpg";
 };
 
 const closeModal = () => {
