@@ -37,6 +37,7 @@ import { computed, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useQuizState } from "../store/quizState.js";
 import { useQuiz } from "../composables/useQuiz.js";
+import noCover from "/img/no-cover.jpg";
 
 const router = useRouter();
 const { getSelectedTrack } = useQuizState();
@@ -47,7 +48,7 @@ const isVisible = ref(true);
 
 const trackCover = computed(() => {
   if (track?.cover && track.cover !== "") return track.cover;
-  return "/img/no-cover.jpg";
+  return noCover;
 });
 
 const getVibeLabel = (vibeId) => {
@@ -61,7 +62,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "/img/no-cover.jpg";
+  e.target.src = noCover;
 };
 
 const closeModal = () => {
