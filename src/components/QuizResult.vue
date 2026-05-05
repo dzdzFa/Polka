@@ -1,5 +1,5 @@
 <template>
-  <div class="result-overlay">
+  <div v-if="isVisible" class="result-overlay" @click.self="closeModal">
     <div class="result-container">
       <div class="result-icon">🎉</div>
       <h2 class="result-title">Твой вайб определен!</h2>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useQuizState } from "../store/quizState.js";
 import { useQuiz } from "../composables/useQuiz.js";
@@ -43,6 +43,7 @@ const { getSelectedTrack } = useQuizState();
 const { resetQuiz } = useQuiz();
 
 const track = getSelectedTrack();
+const isVisible = ref(true);
 
 const trackCover = computed(() => {
   if (track?.cover && track.cover !== "") return track.cover;
@@ -63,20 +64,33 @@ const handleImageError = (e) => {
   e.target.src = "/img/no-cover.jpg";
 };
 
+const closeModal = () => {
+  isVisible.value = false;
+};
+
 const goToHome = () => {
-  router.push({ name: "home" });
+  closeModal();
+  setTimeout(() => {
+    router.push({ name: "home" });
+  }, 200);
 };
 
 const goToDetail = () => {
   if (track) {
-    router.push({ name: "detail", params: { id: track.id } });
+    closeModal();
+    setTimeout(() => {
+      router.push({ name: "detail", params: { id: track.id } });
+    }, 200);
   }
 };
 
 const retakeQuiz = () => {
-  resetQuiz();
-  localStorage.removeItem("quiz-completed");
-  window.location.reload();
+  closeModal();
+  setTimeout(() => {
+    resetQuiz();
+    localStorage.removeItem("quiz-completed");
+    window.location.reload();
+  }, 200);
 };
 </script>
 
@@ -93,7 +107,13 @@ const retakeQuiz = () => {
   align-items: center;
   justify-content: center;
   z-index: 1500;
-  animation: slideUp 0.4s ease;
+  animation: slideUp 0.3s ease;
+  transition: opacity 0.2s ease;
+}
+
+/* Анимация при закрытии */
+.result-overlay[v-cloak] {
+  display: none;
 }
 
 .result-container {
