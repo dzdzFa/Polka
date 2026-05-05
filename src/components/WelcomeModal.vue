@@ -53,7 +53,7 @@ defineEmits(["start"]);
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("/img/fon.jpg");
+  background-image: url("./img/fon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

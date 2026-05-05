@@ -6,7 +6,7 @@ const tracks = ref([
     title: "Danza Kuduro",
     artist: "Lucenzo, Don Omar",
     vibe: "cheerful",
-    cover: "/img/Denza.jpg",
+    cover: "./img/Denza.jpg",
     duration: "3:19",
     desc: "Бодрая песня для олдов",
     yandexUrl:
@@ -17,7 +17,7 @@ const tracks = ref([
     title: "Все для тебя",
     artist: "Стас Михайлов",
     vibe: "funny",
-    cover: "/img/VseDljTebj.jpg",
+    cover: "./img/VseDljTebj.jpg",
     duration: "3:54",
     desc: "Веселая и топовая песня Стаса",
     yandexUrl:
@@ -28,7 +28,7 @@ const tracks = ref([
     title: "The Town",
     artist: "The Weeknd",
     vibe: "calm",
-    cover: "/img/Thetown.jpg",
+    cover: "./img/Thetown.jpg",
     duration: "5:07",
     desc: "Для настоящик ценителей поп культуры",
     yandexUrl:
@@ -39,7 +39,7 @@ const tracks = ref([
     title: "Глаза не врут",
     artist: "Кореш",
     vibe: "sad",
-    cover: "/img/eysenotlaying.jpg",
+    cover: "./img/eysenotlaying.jpg",
     duration: "1:50",
     desc: "Просто легенда",
     yandexUrl:
