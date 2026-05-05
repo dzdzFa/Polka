@@ -54,23 +54,18 @@ const { setSelectedTrack, completeQuiz } = useQuizState();
 const handleAnswer = (vibe) => {
   saveAnswer(vibe);
 
-  // Проверяем, последний ли это вопрос
   if (currentQuestionIndex.value + 1 === questions.length) {
-    // Получаем результат вайба
     const resultVibe = getResultVibe();
 
-    // Ищем треки с таким вайбом
     const matchingTracks = tracks.value.filter(
       (track) => track.vibe === resultVibe,
     );
 
-    // Если есть подходящие треки, выбираем случайный
     let selectedTrack = null;
     if (matchingTracks.length > 0) {
       const randomIndex = Math.floor(Math.random() * matchingTracks.length);
       selectedTrack = matchingTracks[randomIndex];
     } else {
-      // Если нет треков с таким вайбом, берем первый попавшийся (такого не должно быть)
       selectedTrack = tracks.value[0];
     }
 
