@@ -43,7 +43,7 @@ const coverSrc = computed(() => {
   if (props.track.cover && props.track.cover !== "") {
     return props.track.cover;
   }
-  return "/img/no-cover.jpg";
+  return "/no-cover.jpg";
 });
 
 const getVibeLabel = (vibeId) => {
@@ -57,7 +57,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "/img/no-cover.jpg";
+  e.target.src = "/no-cover.jpg";
 };
 </script>
 
