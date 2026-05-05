@@ -52,7 +52,6 @@ import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMusicData } from "../composables/useMusicData.js";
 import { useMyTape } from "../composables/useMyTape.js";
-import noCover from "/img/no-cover.jpg";
 
 const route = useRoute();
 const router = useRouter();
@@ -67,7 +66,7 @@ const coverSrc = computed(() => {
   if (track.value.cover && track.value.cover !== "") {
     return track.value.cover;
   }
-  return noCover;
+  return "/img/no-cover.jpg";
 });
 
 onMounted(() => {
@@ -110,7 +109,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = noCover;
+  e.target.src = "/img/no-cover.jpg";
 };
 </script>
 
