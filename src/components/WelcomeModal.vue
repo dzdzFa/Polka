@@ -30,9 +30,10 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 defineEmits(["start"]);
 
-import fon from "@/assets/img/fon.jpg";
+import fon from "../assets/img/fon.jpg";
 
 const bgStyle = computed(() => ({
   backgroundImage: `url(${fon})`,

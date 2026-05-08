@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed } from "vue";
-import noCover from "@/assets/img/no-cover.jpg";
+import noCover from "../assets/img/no-cover.jpg";
 
 const props = defineProps({
   track: {

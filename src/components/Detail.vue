@@ -52,7 +52,7 @@ import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMusicData } from "../composables/useMusicData.js";
 import { useMyTape } from "../composables/useMyTape.js";
-import noCover from "@/assets/img/no-cover.jpg";
+import noCover from "../assets/img/no-cover.jpg";
 
 const route = useRoute();
 const router = useRouter();

@@ -37,7 +37,7 @@ import { computed, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useQuizState } from "../store/quizState.js";
 import { useQuiz } from "../composables/useQuiz.js";
-import noCover from "@/assets/img/no-cover.jpg";
+import noCover from "../assets/img/no-cover.jpg";
 
 const router = useRouter();
 const { getSelectedTrack } = useQuizState();
