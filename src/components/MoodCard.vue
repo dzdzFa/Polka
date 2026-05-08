@@ -25,8 +25,7 @@
 
 <script setup>
 import { computed } from "vue";
-
-const base = import.meta.env.BASE_URL;
+import noCover from "@/assets/img/no-cover.jpg";
 
 const props = defineProps({
   track: {
@@ -45,7 +44,7 @@ const coverSrc = computed(() => {
   if (props.track.cover && props.track.cover !== "") {
     return props.track.cover;
   }
-  return `${base}img/no-cover.jpg`;
+  return noCover;
 });
 
 const getVibeLabel = (vibeId) => {
@@ -59,7 +58,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = `${base}img/no-cover.jpg`;
+  e.target.src = noCover;
 };
 </script>
 

@@ -30,13 +30,12 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-
 defineEmits(["start"]);
 
-const base = import.meta.env.BASE_URL;
+import fon from "@/assets/img/fon.jpg";
+
 const bgStyle = computed(() => ({
-  backgroundImage: `url(${base}img/fon.jpg)`,
+  backgroundImage: `url(${fon})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
