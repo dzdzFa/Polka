@@ -1,9 +1,9 @@
 import { ref, computed } from "vue";
 
-import denza from "@/assets/img/Denza.jpg";
-import vseDljTebj from "@/assets/img/VseDljTebj.jpg";
-import thetown from "@/assets/img/Thetown.jpg";
-import eyesNotLaying from "@/assets/img/eysenotlaying.jpg";
+import denza from "../assets/img/Denza.jpg";
+import vseDljTebj from "../assets/img/VseDljTebj.jpg";
+import thetown from "../assets/img/Thetown.jpg";
+import eyesNotLaying from "../assets/img/eysenotlaying.jpg";
 
 const tracks = ref([
   {
