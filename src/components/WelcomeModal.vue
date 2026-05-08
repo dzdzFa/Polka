@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-overlay">
-    <div class="background-image"></div>
+    <div class="background-image" :style="bgStyle"></div>
     <div class="background-overlay"></div>
 
     <div class="welcome-container">
@@ -30,7 +30,17 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 defineEmits(["start"]);
+
+const base = import.meta.env.BASE_URL;
+const bgStyle = computed(() => ({
+  backgroundImage: `url(${base}img/fon.jpg)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}));
 </script>
 
 <style scoped>
@@ -53,7 +63,6 @@ defineEmits(["start"]);
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("/Polka/img/fon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
