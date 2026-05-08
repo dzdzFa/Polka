@@ -30,6 +30,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 defineEmits(["start"]);
 
 import fon from "../assets/img/fon.jpg";
