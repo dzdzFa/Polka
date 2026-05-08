@@ -61,12 +61,14 @@ const { addToTape, removeFromTape, isInTape } = useMyTape();
 const track = ref(null);
 const isSaved = ref(false);
 
+const base = import.meta.env.BASE_URL;
+
 const coverSrc = computed(() => {
   if (!track.value) return "";
   if (track.value.cover && track.value.cover !== "") {
     return track.value.cover;
   }
-  return "img/no-cover.jpg";
+  return `${base}img/no-cover.jpg`;
 });
 
 onMounted(() => {
@@ -109,7 +111,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "/Polka/img/no-cover.jpg";
+  e.target.src = `${base}img/no-cover.jpg`;
 };
 </script>
 

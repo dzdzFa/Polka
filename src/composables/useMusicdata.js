@@ -1,12 +1,14 @@
 import { ref, computed } from "vue";
 
+const base = import.meta.env.BASE_URL;
+
 const tracks = ref([
   {
     id: 1,
     title: "Danza Kuduro",
     artist: "Lucenzo, Don Omar",
     vibe: "cheerful",
-    cover: "/Polka/img/Denza.jpg",
+    cover: `${base}img/Denza.jpg`,
     duration: "3:19",
     desc: "Бодрая песня для олдов",
     yandexUrl:
@@ -17,7 +19,7 @@ const tracks = ref([
     title: "Все для тебя",
     artist: "Стас Михайлов",
     vibe: "funny",
-    cover: "/Polka/img/VseDljTebj.jpg",
+    cover: `${base}img/VseDljTebj.jpg`,
     duration: "3:54",
     desc: "Веселая и топовая песня Стаса",
     yandexUrl:
@@ -28,7 +30,7 @@ const tracks = ref([
     title: "The Town",
     artist: "The Weeknd",
     vibe: "calm",
-    cover: "/Polka/img/Thetown.jpg",
+    cover: `${base}img/Thetown.jpg`,
     duration: "5:07",
     desc: "Для настоящик ценителей поп культуры",
     yandexUrl:
@@ -39,7 +41,7 @@ const tracks = ref([
     title: "Глаза не врут",
     artist: "Кореш",
     vibe: "sad",
-    cover: "/Polka/img/eysenotlaying.jpg",
+    cover: `${base}img/eysenotlaying.jpg`,
     duration: "1:50",
     desc: "Просто легенда",
     yandexUrl:
