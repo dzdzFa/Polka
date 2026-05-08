@@ -7,7 +7,7 @@ export default defineConfig({
   base: "/Polka/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
 });
