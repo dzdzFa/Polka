@@ -109,7 +109,7 @@ const getVibeLabel = (vibeId) => {
 };
 
 const handleImageError = (e) => {
-  e.target.src = "img/no-cover.jpg";
+  e.target.src = "/Polka/img/no-cover.jpg";
 };
 </script>
 
